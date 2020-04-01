@@ -11,7 +11,15 @@
 <body>
   <h1>使用者註冊</h1>
 
-  <%= form_for(User.new, url: '/sign_up', method: 'post' ) do |f| %>
+    <%= form_for(@user, url: '/sign_up', method: 'post' ) do |f| %>
+    <% if @user.errors.any?%>
+      <ul>
+        <% @user.errors.full_messages.each do |message|%>
+        <li> <%= message %> </li>
+      <% end %>
+    </ul>
+  <% end %>
+
 
   <div>
     <%= f.label :email , "帳號" %>
@@ -24,14 +32,13 @@
 
   </div>
   <div>
-    <%= f.label :password_confirm , "確認密碼"%>
-    <%= f.password_field :password_confirm %>
+    <%= f.label :password_confirmation , "確認密碼"%>
+    <%= f.password_field :password_confirmation %>
   </div>
   <div>
     <%= f.submit "註冊" %>
   </div>
-
-  <% end %>
+<% end %>
 
 
 </body>
