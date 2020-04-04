@@ -13,9 +13,8 @@ class UsersController < ApplicationController
   end
 
   def sign_in
-    # 查資料庫
     user = User.find_by(email: user_params[:email], password: user_params[:password])
-    # User.where(email: ?,password: ?)
+    
     if user
       session[:ccc9527] = user.email
       redirect_to root_path
