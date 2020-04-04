@@ -5,7 +5,7 @@ class UsersController < ApplicationController
 
   def logout
     session[:ccc9527] = nil
-    redirect_to root_path
+    redirect_to root_path, notice: '成功登出!'
   end
 
   def sign_up
@@ -17,9 +17,9 @@ class UsersController < ApplicationController
     
     if user
       session[:ccc9527] = user.email
-      redirect_to root_path
+      redirect_to root_path, notice: '登入成功!'
     else
-      redirect_to login_path
+      redirect_to login_path, notice: '登入失敗!'
     end
   end
 
@@ -31,7 +31,7 @@ class UsersController < ApplicationController
       if @user.save
         session[:ccc9527] = @user.email
         # TODO: 密碼加密
-        redirect_to "/"
+        redirect_to "/", notice: '註冊成功!'
       else
         render :sign_up
       end
