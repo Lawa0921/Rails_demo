@@ -1,7 +1,7 @@
-<%= form_for(@item) do |f|%>
-  <% if @item.errors.any?%>
+<%= form_for(item) do |f|%>
+  <% if item.errors.any?%>
     <ul>
-      <% @item.errors.full_messages.each do |message|%>
+      <% item.errors.full_messages.each do |message|%>
       <li> <%= message %> </li>
     <% end %>
     </ul>
