@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :categories
   resources :items
   # get "/", to: "welcome#index"
   root "welcome#index" # ← 針對首頁的簡短寫法
