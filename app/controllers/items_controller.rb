@@ -1,7 +1,5 @@
 class ItemsController < ApplicationController
 
-rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
-
 
   def index
     @items = Item.all
@@ -14,19 +12,30 @@ rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
   def new
     @item = Item.new
   end
+
   def create
     @item = Item.new(item_params)
 
     if @item.save
-      # flash[:notice] = '成功新增餐點!' 
-
       redirect_to items_path, notice: '成功新增餐點!'
     else
       render :new
     end
   end
 
+  def edit
+    @item = Item.find(params[:id])
+  end
 
+  def update
+    @item = Item.find(params[:id])
+    
+    if @item.update(item_params)
+      redirect_to items_path, notice: '成功修改餐點!'
+    else
+      render :edit
+    end
+  end
 
   def destroy
     item = Item.find(params[:id])
@@ -39,10 +48,5 @@ rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
     params.require(:item).permit(:name, :description, :price, :spec)
   end
 
-  def record_not_found
-    # redirect_to items_path, notice: '找不到該餐點!'
-    render file: 'public/404.html',
-    status: 404,
-    layout: false
-  end
+
 end
