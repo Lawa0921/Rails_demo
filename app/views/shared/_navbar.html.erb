@@ -1,8 +1,9 @@
 <%= link_to "餐點列表", items_path%> |
-    <% if session[:ccc9527]%>
-      <%= session[:ccc9527] %> | 
+    <% if current_user %>
+      <%= current_user %> | 
       <%# <a href="/logout">登出</a> %>
-      <%= link_to "登出", logout_path, method: 'delete' %>
+      <%= link_to "登出", logout_path, method: 'delete' %> |
+      <%= link_to "我要開團", "#"%>
       <% else %>
         <a href="/sign_up">註冊</a> |
         <a href="/login">登入</a>
