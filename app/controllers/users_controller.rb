@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  skip_before_action :check_login, expect: [:logout]
+
   def login
     @user = User.new
   end
