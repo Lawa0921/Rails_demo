@@ -1,7 +1,11 @@
 .item {
-  img {
+  .wrap {
     width: 100%;
-    // max-height: 200px;
+    height: 200px;
     overflow: hidden;
+    img {
+      width: 100%;
+      display: block;
+    }
   }
 }
