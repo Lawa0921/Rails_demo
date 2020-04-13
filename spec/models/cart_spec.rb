@@ -9,8 +9,12 @@ RSpec.describe Cart, type: :model do
     end
     it "如果加了相同種類的商品到購物車裡，購買項目（CartItem）並不會增加，但商品的數量會改變。" do
       cart = Cart.new
-      cart.add_item(2)
-      expect(cart)
+
+      3.times { cart.add_item(1) }
+      2.times { cart.add_item(2) }
+      2.times { cart.add_item(1) }
+
+      expect(cart.items.count).to be 2
     end
     it "商品可以放到購物車裡，也可以再拿出來。" do
     end
