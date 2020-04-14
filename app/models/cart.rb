@@ -20,4 +20,15 @@ class Cart
   def items
     @items
   end
+
+  def total
+    @items.reduce(0) { |sum, item| sum + item.total}
+    
+    # tmp = 0
+    # @items.each do |item|
+    #   tmp += item.total
+    # end
+
+    # return tmp
+  end
 end
