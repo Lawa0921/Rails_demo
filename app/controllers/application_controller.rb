@@ -20,6 +20,6 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user
-    session[:ccc9527]
+    User.find_by(id: session[:ccc9527])
   end
 end

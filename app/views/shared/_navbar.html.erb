@@ -22,7 +22,7 @@
       </li>
       <% if current_user %> 
       <li class="nav-item">
-        <%= current_user %>
+        <%= current_user.email %>
       </li>
       <li class="nav-item">
         <%= link_to "登出", logout_path, method:'delete',class:'nav-link' %>
