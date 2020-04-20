@@ -1,8 +1,14 @@
-<h1><%= @item.name %></h1>
+<%= image_tag @item.cover.variant(resize_to_limit: [200,
+        200]),class:'card-img-top' if @item.cover.attached? %>
 
-<ul>
-  <li>價錢：<%= @item.price%></li>
-</ul>
+<div data-controller="item">
+  <h1><%= @item.name %>
+    <a href="#" class="btn btn-danger" data-action="item#heart">
+      <i class="far fa-heart" data-target="item.icon"></i>
+    </a>
+  </h1>
+  <h2>價錢：<%= @item.price%></h2>
+</div>
 
 <hr>
 <h3>留言區：</h3>
@@ -12,18 +18,15 @@
   <%#= f.submit "送出"%>
 <%# end  %>
 
-<%= form_for(@comment, url: item_comments_path(@item)) do |f|%>
+<%= form_for(@comment, url: item_comments_path(@item), remote: true) do |f|%>
 <div class="form-group">
   <%= f.text_area :content ,class: "form-control"%>
-  <%= f.submit class: "btn btn-success"%>
+  <%= f.submit class: "btn btn-success md-auto"%>
 </div>
 <% end %>
 
-<ul>
-  <% @item.comments.each do |comment| %>
-    <div class="alert alert-secondary">
-      <p><%=  comment.content %></p>
-      <p>posted by <%= comment.user.email %> / <%= comment.created_at%></p>
-    </div>
+<div class="comments">
+  <% @comments.each do |comment| %>
+    <%= render 'comments/comment', comment: comment%>
   <% end %>
-</ul
+</div>

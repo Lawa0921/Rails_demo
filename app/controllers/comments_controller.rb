@@ -14,7 +14,9 @@ class CommentsController < ApplicationController
     # @comment.item = @item
 
     if @comment.save
-      redirect_to item_path(params[:item_id]), notice: "已送出！"
+      # render js: "alert("hi")"
+      # render json: {name: '1111', age: '18'}
+      # redirect_to item_path(params[:item_id]), notice: "已送出！"
     else
       render 'items/show'
     end
