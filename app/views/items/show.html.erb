@@ -21,6 +21,9 @@
 <%# end  %>
 
   <%= form_for(@comment, url: item_comments_path(@item), remote: true) do |f|%>
+
+  <input type="hidden" id="item_id" value="<%= @item.id %>">
+  
   <div class="form-group">
     <%= f.text_area :content ,
                     class: "form-control",

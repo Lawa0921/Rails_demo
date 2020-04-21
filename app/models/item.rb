@@ -11,6 +11,10 @@ class Item < ApplicationRecord
     update(deleted_at: Time.now)
   end
 
+  def favorited_by(u)
+    u.items.include?(self)
+  end
+
   has_one_attached :cover
 
   belongs_to :category

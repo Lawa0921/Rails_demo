@@ -14,10 +14,18 @@ export default class extends Controller {
     const csrfToken = document.querySelector("[name=csrf-token]").content;
     axios.defaults.headers.common["X-CSRF-TOKEN"] = csrfToken;
 
+    let item_id = document.querySelector("#item_id").value;
+
     axios
-      .post("/api/v1/items/9/favorite")
-      .then(function (resp) {
-        console.log(resp.data);
+      .post(`/api/v1/items/${item_id}/favorite`)
+      .then((resp) => {
+        if (resp.data.status === "favorited") {
+          this.iconTarget.classList.remove("far");
+          this.iconTarget.classList.add("fas");
+        } else {
+          this.iconTarget.classList.remove("fas");
+          this.iconTarget.classList.add("far");
+        }
       })
       .catch(function (err) {
         console.log(err);
