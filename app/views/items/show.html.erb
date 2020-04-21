@@ -11,22 +11,30 @@
 </div>
 
 <hr>
-<h3>留言區：</h3>
+
+<div data-controller="comment">
+  <h3>留言區：</h3>
 <%#= form_with model:@comment,url: item_comments_path(@item), local: true do |f|%>
   <%#= f.label :content, "留言" %>
   <%#= f.text_area :content%>
   <%#= f.submit "送出"%>
 <%# end  %>
 
-<%= form_for(@comment, url: item_comments_path(@item), remote: true) do |f|%>
-<div class="form-group">
-  <%= f.text_area :content ,class: "form-control"%>
-  <%= f.submit class: "btn btn-success md-auto"%>
-</div>
-<% end %>
-
-<div class="comments">
-  <% @comments.each do |comment| %>
-    <%= render 'comments/comment', comment: comment%>
+  <%= form_for(@comment, url: item_comments_path(@item), remote: true) do |f|%>
+  <div class="form-group">
+    <%= f.text_area :content ,
+                    class: "form-control",
+                    data: {target: "comment.content", 
+                    action: 'keyup->comment#check'}%>
+    <%= f.submit class: "btn btn-success md-auto",
+                  disabled: true,
+                  data:{target: 'comment.submit'}%>
+  </div>
   <% end %>
+
+  <div class="comments">
+    <% @comments.each do |comment| %>
+      <%= render 'comments/comment', comment: comment%>
+    <% end %>
+  </div>
 </div>
