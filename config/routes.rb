@@ -4,6 +4,9 @@ Rails.application.routes.draw do
 
   resources :categories
   resources :items do
+    member do
+      post :add_to_cart
+    end
     resources :comments, only: [:create]
   end
 
@@ -18,6 +21,11 @@ Rails.application.routes.draw do
       end
     end
   end
+
+
+  # post "cart/:id", to: "cart#add", as: :cart
+
+  resource :cart, only: [:show, :destroy]
 
 
 

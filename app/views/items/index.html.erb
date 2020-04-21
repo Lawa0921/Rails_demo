@@ -17,6 +17,7 @@
         <%= link_to "編輯",edit_item_path(item), class: 'btn btn-primary'%>
         <%=link_to "刪除", item, data: {confirm:'確定刪除?', method:
         'delete'},class: 'btn btn-success' %>
+        <%=link_to "加到購物車", add_to_cart_item_path(item) ,class: 'btn btn-danger', method:"post" %>
       </div>
     </div>
   </div>

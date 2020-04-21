@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
 
   before_action :check_login
 
-  helper_method :current_user
+  helper_method :current_user, :current_cart
 
   private
   def record_not_found
@@ -21,5 +21,9 @@ class ApplicationController < ActionController::Base
 
   def current_user
     User.find_by(id: session[:ccc9527])
+  end
+
+  def current_cart
+    @_ca123 ||= Cart.from_hash(session[:carty])
   end
 end

@@ -1,7 +1,17 @@
 class ItemsController < ApplicationController
 
-  before_action :find_item, only: [:show, :edit, :update, :destroy]
+  before_action :find_item, only: [:show, :edit, :update, :destroy, :add_to_cart]
                             # except: [:index, :new, :create]
+
+
+  def add_to_cart
+    cart = Cart.from_hash(session[:carty])
+    # current_cart.add_item(@item.id)
+    cart.add_item(@item.id)
+    session[:carty] = cart.to_hash
+
+    redirect_to root_path, notice: "以加到購物車！"
+  end
 
   def index
     @items = Item.all
