@@ -4,7 +4,13 @@
 <div data-controller="item">
   <h1><%= @item.name %>
     <a href="#" class="btn btn-danger" data-action="item#heart">
+    <% if @item.favorited_by(current_user) %>
       <i class="far fa-heart" data-target="item.icon"></i>
+    <% else %>
+      <i class="fas fa-heart" data-target="item.icon"></i>
+    <% end %>
+      
+
     </a>
   </h1>
   <h2>價錢：<%= @item.price%></h2>
@@ -23,7 +29,7 @@
   <%= form_for(@comment, url: item_comments_path(@item), remote: true) do |f|%>
 
   <input type="hidden" id="item_id" value="<%= @item.id %>">
-  
+
   <div class="form-group">
     <%= f.text_area :content ,
                     class: "form-control",
