@@ -15,6 +15,8 @@ class Item < ApplicationRecord
 
   belongs_to :category
   has_many :comments
+  has_many :favorite_items
+  has_many :users, through: :favorite_items
 end
 
 
