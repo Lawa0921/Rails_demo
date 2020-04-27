@@ -15,6 +15,11 @@ class OrdersController < ApplicationController
                         price: cart_item.item.price,
                         quantity: cart_item.quantity)
       @order.order_items << i
+
+
+      debugger
+
+
     end
 
     if @order.save
@@ -34,5 +39,4 @@ class OrdersController < ApplicationController
   def find_order
     @order = Order.find(params[:id])
   end
-
 end

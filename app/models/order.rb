@@ -4,6 +4,7 @@ class Order < ApplicationRecord
 
   before_create :create_order_num
 
+  attr_reader :nonce
 
 
   private
