@@ -1,3 +1,5 @@
+require 'date'
+
 class OrdersController < ApplicationController
   def index
   end
@@ -32,4 +34,5 @@ class OrdersController < ApplicationController
   def find_order
     @order = Order.find(params[:id])
   end
+
 end
