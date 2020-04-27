@@ -25,7 +25,17 @@ Rails.application.routes.draw do
 
   # post "cart/:id", to: "cart#add", as: :cart
 
-  resource :cart, only: [:show, :destroy]
+  resource :cart, only: [:show, :destroy] do
+    collection do
+      get :checkout
+    end
+  end
+
+  resources :orders, only: [:show, :index, :create] do
+    member do
+      delete :cancel
+    end
+  end
 
 
 
