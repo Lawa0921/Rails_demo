@@ -15,15 +15,22 @@ class OrdersController < ApplicationController
                         price: cart_item.item.price,
                         quantity: cart_item.quantity)
       @order.order_items << i
-
-
-      debugger
-
-
     end
 
     if @order.save
-      redirect_to root_path, notice: 'ok'
+
+      result = gateway.transaction.sale(
+        amount: current_cart.total,
+        payment_method_nonce: params[:order][:nonce]
+      )
+      if result.success?
+        @order.pay!
+        redirect_to root_path, notice: '交易成功！'
+        session[:carty] = nil
+      else
+        redirect_to root_path, alert: '交易失敗！'
+      end
+
     else
       redirect_to root_path, notice: 'not ok'
     end

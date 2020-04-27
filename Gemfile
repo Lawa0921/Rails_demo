@@ -5,6 +5,8 @@ ruby '2.6.3'
 
 gem 'foreman'
 gem "braintree", "~> 2.101.0"
+gem 'figaro', '~> 1.0'
+gem 'aasm', '~> 5.0.8'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.2', '>= 6.0.2.2'

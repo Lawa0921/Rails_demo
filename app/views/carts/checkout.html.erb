@@ -30,6 +30,7 @@
 
     let button = document.querySelector('#submit-order')
     let nonce_field = document.querySelector('#order_nonce')
+    let form = document.querySelector("#new_order")
 
       braintree.dropin.create({
       authorization: '<%= @token %>',
@@ -42,8 +43,7 @@
 
         instance.requestPaymentMethod(function (err, payload) {
         nonce_field.value = payload.nonce;
-        alert(payload.nonce);
-        // form.submit();
+        form.submit();
         });
       });
     });

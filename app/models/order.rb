@@ -1,4 +1,29 @@
 class Order < ApplicationRecord
+  include AASM
+
+  aasm column: 'state' do
+    state :pending, initial: true
+    state :paid, :delivered, :cancelled
+
+    event :pay do
+      transitions from: :pending, to: :paid
+
+      after_transaction do
+        puts "-" * 10
+        puts "發送簡訊"
+        puts "-" * 10
+      end
+    end
+
+    event :deliver do
+      transitions from: :paid, to: :delivered
+    end
+
+    event :cancel do
+      transitions form: [:pending, :paid], to: :cancelled
+    end
+  end
+  
   has_many :order_items
   belongs_to :user
 
